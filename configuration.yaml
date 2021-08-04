@@ -1,4 +1,18 @@
-
+homeassistant:
+  name: Zuhause
+  latitude: !secret HOMEASSISTANT_LATITUDE
+  longitude: !secret HOMEASSISTANT_LONGITUDE
+  elevation: 256
+  unit_system: metric
+  time_zone: Europe/Berlin
+  packages: !include_dir_named packages
+  whitelist_external_dirs:
+    - '/tmp'
+  auth_providers:
+     - type: homeassistant
+     - type: trusted_networks
+       trusted_networks:
+         - 192.168.170.0/24
 # Text to speech
 tts:
   - platform: google_translate
