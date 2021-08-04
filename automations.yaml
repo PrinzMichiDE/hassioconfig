@@ -1,0 +1,562 @@
+- id: '1623588667735'
+  alias: Allesaus
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 6d89793c-019b-4884-a337-faa2329e1f65
+  - platform: time
+    at: 02:00:00
+  - platform: device
+    device_id: d250d74bdcebb372d463a17af272c4cb
+    domain: alarm_control_panel
+    entity_id: alarm_control_panel.homeip_hmip_alarm_control_panel
+    type: armed_home
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      area_id:
+      - wohnzimmer
+      - schlafzimmer
+  mode: single
+- id: '1623869139135'
+  alias: Eingangtür geöffnet
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 489d375346d0a04932edc201d3533fe7
+    entity_id: binary_sensor.homeip_wohnungstur
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: telegram_bot.send_photo
+    data:
+      username: !secret camer01Username
+      password: !secret camer01Password
+      verify_ssl: false
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+  - wait_template: ''
+    timeout: 00:00:05
+  - service: telegram_bot.send_photo
+    data:
+      username: !secret camer01Username
+      password: !secret camer01Password
+      verify_ssl: false
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+  - wait_template: ''
+    timeout: 00:00:05
+  - service: telegram_bot.send_photo
+    data:
+      username: !secret camer01Username
+      password: !secret camer01Password
+      verify_ssl: false
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+  - wait_template: ''
+    timeout: 00:00:05
+  - service: telegram_bot.send_photo
+    data:
+      username: !secret camer01Username
+      password: !secret camer01Password
+      verify_ssl: false
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+  - service: telegram_bot.send_photo
+    data:
+      username: !secret camer01Username
+      password: !secret camer01Password
+      verify_ssl: false
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+  - service: telegram_bot.send_photo
+    data:
+      username: !secret camer01Username
+      password: !secret camer01Password
+      verify_ssl: false
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+  - service: telegram_bot.send_photo
+    data:
+      username: !secret camer01Username
+      password: !secret camer01Password
+      verify_ssl: false
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+  mode: single
+- id: '1623870044605'
+  alias: Eingansgtür ist zu
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: 489d375346d0a04932edc201d3533fe7
+    entity_id: binary_sensor.homeip_wohnungstur
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Haustür ist seit 5 Sekunden zu
+  mode: single
+- id: '1623870094883'
+  alias: Eingangtür geöffnet länger als 1 Minuten geöffnet
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 489d375346d0a04932edc201d3533fe7
+    entity_id: binary_sensor.homeip_wohnungstur
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Haustür seit einer Minute geöffnet
+  mode: single
+- id: '1623955587713'
+  alias: FordAutoFocusDoorStatus
+  description: ''
+  trigger:
+  - platform: device
+    device_id: e6bde59595c9d6c9a84402403352f6bf
+    domain: lock
+    entity_id: lock.fordpass_doorlock
+    type: locked
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: 'Fenster des Ford Focus sind: {{ states.sensor.fordpass_windowposition.state}}'
+  mode: single
+- id: '1623956066998'
+  alias: FordFocus geöffnet
+  description: ''
+  trigger:
+  - platform: device
+    device_id: e6bde59595c9d6c9a84402403352f6bf
+    domain: lock
+    entity_id: lock.fordpass_doorlock
+    type: unlocked
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Ford Focus wurde geöffnet !!!!
+  mode: single
+- id: '1623956128604'
+  alias: FordFocusHomeVerlassen
+  description: ''
+  trigger:
+  - platform: device
+    device_id: e6bde59595c9d6c9a84402403352f6bf
+    domain: device_tracker
+    entity_id: device_tracker.fordpass_tracker
+    type: leaves
+    zone: zone.home
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Ford Focus hat Zone "Home" verlassen
+  mode: single
+- id: '1623956173300'
+  alias: ''
+  description: ''
+  trigger:
+  - platform: device
+    device_id: e6bde59595c9d6c9a84402403352f6bf
+    domain: device_tracker
+    entity_id: device_tracker.fordpass_tracker
+    type: enters
+    zone: zone.home
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Ford Focus hat Zone "Home" betretten
+  mode: single
+- id: '1623956335991'
+  alias: DailyStatusFordFocus
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:22:00'
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: 'Fenster des Ford Focus sind: {{ states.sensor.fordpass_windowposition.state}}
+        -- Türen des Ford Focus sind:  {{ states.sensor.fordpass_doorstatus.state}}'
+  - service: fordpass.refresh_status
+    data:
+      vin: WF0NXXGCHNKJ29260
+  mode: single
+- id: '1623957743628'
+  alias: FordFocusBewegetsich
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.fordpass_gps
+    from: UNSHIFTED
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Ford Focus bewegt sich!
+  mode: single
+- id: '1625672746799'
+  alias: SpiegelAnBewegung
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_b2c60203_ias_zone
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.flur_lichtstreifen
+    data:
+      brightness_pct: 100
+  - scene: scene.flurab
+  mode: single
+- id: '1625672782838'
+  alias: SpiegelAusBewegung
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: '45'
+  condition:
+  - type: is_no_motion
+    condition: device
+    device_id: d05273058c6c964ec729460f5515a717
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_b2c60203_ias_zone
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  action:
+  - scene: scene.fluraus
+  mode: single
+- id: '1625673616593'
+  alias: BewegunginderWohnung
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: d05273058c6c964ec729460f5515a717
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_b2c60203_ias_zone
+    domain: binary_sensor
+  - type: motion
+    platform: device
+    device_id: c8c0f6e5d18dd1d95c5a6fb1841445e1
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_8a0b4d01_ias_zone
+    domain: binary_sensor
+  - type: motion
+    platform: device
+    device_id: 3315fb4426009c7445dae786972d6979
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_e0c40203_ias_zone
+    domain: binary_sensor
+  - type: motion
+    platform: device
+    device_id: e324f0da9f1f2643d17372b8276ebc28
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_a6895a01_ias_zone
+    domain: binary_sensor
+  - type: motion
+    platform: device
+    device_id: 923f6831033f6842468e6393220bbff5
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_61c60203_ias_zone
+    domain: binary_sensor
+  - type: opened
+    platform: device
+    device_id: 489d375346d0a04932edc201d3533fe7
+    entity_id: binary_sensor.homeip_wohnungstur
+    domain: binary_sensor
+  condition:
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: d250d74bdcebb372d463a17af272c4cb
+      domain: alarm_control_panel
+      entity_id: alarm_control_panel.homeip_hmip_alarm_control_panel
+      type: is_triggered
+    - condition: device
+      device_id: d250d74bdcebb372d463a17af272c4cb
+      domain: alarm_control_panel
+      entity_id: alarm_control_panel.homeip_hmip_alarm_control_panel
+      type: is_armed_home
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Bewegung erkannt {{ trigger.to_state.attributes.friendly_name }}
+  - service: telegram_bot.send_message
+    data:
+      message: Bewegung erkannt
+  - service: telegram_bot.send_photo
+    data:
+      url: https://192.168.170.60/cgi-bin/currentpic.cgi
+      username: !secret camer01Username
+      password: !secret camer01Password
+  mode: single
+- id: '1625675293536'
+  alias: KuecheBewegungAn_Licht
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 923f6831033f6842468e6393220bbff5
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_61c60203_ias_zone
+    domain: binary_sensor
+  condition:
+  - type: is_illuminance
+    condition: device
+    device_id: 923f6831033f6842468e6393220bbff5
+    entity_id: sensor.lumi_lumi_sensor_motion_aq2_61c60203_illuminance
+    domain: sensor
+    below: 70
+  action:
+  - scene: scene.kuechean
+  mode: single
+- id: '1625675362285'
+  alias: KuecheBewegungAus_Licht
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: '15'
+  condition:
+  - type: is_no_motion
+    condition: device
+    device_id: 923f6831033f6842468e6393220bbff5
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_61c60203_ias_zone
+    domain: binary_sensor
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.kueche_lichtstreifen
+  - scene: scene.kuecheaus
+  mode: single
+- id: '1625676607433'
+  alias: BadBewegungAn
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: e324f0da9f1f2643d17372b8276ebc28
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_a6895a01_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: sun
+    before: sunrise
+    after: sunrise
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.yeelight_color_0x0000000007d45ad8
+    data:
+      brightness_pct: 100
+  - scene: scene.badbesetzt
+  mode: single
+- id: '1625676831373'
+  alias: BadBewegungAus
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: e324f0da9f1f2643d17372b8276ebc28
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_a6895a01_ias_zone
+    domain: binary_sensor
+  condition:
+  - type: is_open
+    condition: device
+    device_id: 4b377ef2fc9cf0812234b3353b6be660
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_8a71bf02_on_off
+    domain: binary_sensor
+  action:
+  - service: light.turn_off
+  - scene: scene.badfrei
+  mode: single
+- id: '1625678077785'
+  alias: DuschLichtan
+  description: ''
+  trigger:
+  - platform: time_pattern
+    seconds: '5'
+  condition:
+  - condition: and
+    conditions:
+    - condition: sun
+      before: sunrise
+      after: sunset
+    - type: is_not_open
+      condition: device
+      device_id: 4b377ef2fc9cf0812234b3353b6be660
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_8a71bf02_on_off
+      domain: binary_sensor
+  action:
+  - scene: scene.neue_szene
+  mode: single
+- id: '1625678913071'
+  alias: FordFocusHomeLeave
+  description: ''
+  trigger:
+  - platform: device
+    device_id: e6bde59595c9d6c9a84402403352f6bf
+    domain: device_tracker
+    entity_id: device_tracker.fordpass_tracker
+    type: leaves
+    zone: zone.home
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: 'Ford Focus hat Zone "Home" verlassen '
+  - service: telegram_bot.send_message
+    data:
+      message:
+        '[object Object]':
+  mode: single
+- id: '1625756820262'
+  alias: Bad Wassersensor an
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: 962558f45b07e0d5351a9875b9a3ca66
+    entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_c90e8a02_ias_zone
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Im Bad läuft Wasser aus!
+  mode: single
+- id: '1625768437466'
+  alias: Neue Automatisierung
+  description: ''
+  trigger:
+  - device_id: 8e2280b693ce61bf5a9b6673ab95edd5
+    domain: zha
+    platform: device
+    type: device_shaken
+    subtype: turn_on
+  condition: []
+  action:
+  - type: brightness_increase
+    device_id: 3b57888582ffce876639177eb60f8232
+    entity_id: light.wohnzimmer_lichtstreifen
+    domain: light
+  - type: turn_on
+    device_id: 3b57888582ffce876639177eb60f8232
+    entity_id: light.wohnzimmer_lichtstreifen
+    domain: light
+  mode: single
+- id: '1625769189810'
+  alias: Neue Automatisierung
+  description: ''
+  trigger:
+  - device_id: 8e2280b693ce61bf5a9b6673ab95edd5
+    domain: deconz
+    platform: device
+    type: remote_gyro_activated
+    subtype: ''
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 3b57888582ffce876639177eb60f8232
+    entity_id: light.wohnzimmer_lichtstreifen
+    domain: light
+  mode: single
+- id: '1625863426084'
+  alias: Alarmaus
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 8c9eb46a17641241a7c2455d64616fcd
+    domain: device_tracker
+    entity_id: device_tracker.michimi11
+    type: enters
+    zone: zone.home
+  - platform: device
+    device_id: 4cea9ef0ef42654bcf94c4bc1b8bd11b
+    domain: device_tracker
+    entity_id: device_tracker.mi11
+    type: enters
+    zone: zone.home
+  condition: []
+  action:
+  - device_id: d250d74bdcebb372d463a17af272c4cb
+    domain: alarm_control_panel
+    entity_id: alarm_control_panel.homeip_hmip_alarm_control_panel
+    type: arm_home
+    code: '0112'
+  - service: telegram_bot.send_message
+    data:
+      message: Alarmanlage aus
+  mode: single
+- id: '1625863527870'
+  alias: Alarman
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 8c9eb46a17641241a7c2455d64616fcd
+    domain: device_tracker
+    entity_id: device_tracker.michimi11
+    type: leaves
+    zone: zone.home
+  - platform: device
+    device_id: 4cea9ef0ef42654bcf94c4bc1b8bd11b
+    domain: device_tracker
+    entity_id: device_tracker.mi11
+    type: leaves
+    zone: zone.home
+  condition: []
+  action:
+  - device_id: d250d74bdcebb372d463a17af272c4cb
+    domain: alarm_control_panel
+    entity_id: alarm_control_panel.homeip_hmip_alarm_control_panel
+    type: arm_home
+    code: '0112'
+  - service: telegram_bot.send_message
+    data:
+      message: Alarmanlage an
+  mode: single
+- id: '1625863529403'
+  alias: Alarman01
+  description: Szper
+  trigger:
+  - platform: device
+    device_id: 8c9eb46a17641241a7c2455d64616fcd
+    domain: device_tracker
+    entity_id: device_tracker.michimi11
+    type: leaves
+    zone: zone.home
+  - platform: device
+    device_id: 4cea9ef0ef42654bcf94c4bc1b8bd11b
+    domain: device_tracker
+    entity_id: device_tracker.mi11
+    type: leaves
+    zone: zone.home
+  condition: []
+  action:
+  - device_id: d250d74bdcebb372d463a17af272c4cb
+    domain: alarm_control_panel
+    entity_id: alarm_control_panel.homeip_hmip_alarm_control_panel
+    type: arm_home
+    code: '0112'
+  - service: telegram_bot.send_message
+    data:
+      message: Alarmanlage an
+  mode: single

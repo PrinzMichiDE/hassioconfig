@@ -1,0 +1,393 @@
+- id: '1625677297082'
+  name: BadBesetzt
+  entities:
+    light.flur_lichtstreifen:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      supported_color_modes:
+      - color_temp
+      - hs
+      - rgbw
+      color_mode: rgbw
+      brightness: 252
+      hs_color:
+      - 0.476
+      - 100
+      rgb_color:
+      - 255
+      - 2
+      - 0
+      rgbw_color:
+      - 255
+      - 2
+      - 0
+      - 0
+      xy_color:
+      - 0.7
+      - 0.3
+      white_value: 0
+      friendly_name: Flur-Lichtstreifen
+      supported_features: 151
+      state: 'on'
+- id: '1625677349014'
+  name: BadFrei
+  entities:
+    light.flur_lichtstreifen:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      supported_color_modes:
+      - color_temp
+      - hs
+      - rgbw
+      color_mode: rgbw
+      brightness: 255
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      rgbw_color:
+      - 255
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
+      white_value: 255
+      effect: green_fade
+      friendly_name: Flur-Lichtstreifen
+      supported_features: 151
+      state: 'on'
+- id: '1625677540393'
+  name: KuecheAn
+  entities:
+    light.kueche_lichtstreifen:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      supported_color_modes:
+      - color_temp
+      - hs
+      - rgbw
+      color_mode: rgbw
+      brightness: 250
+      hs_color:
+      - 44.842
+      - 38
+      rgb_color:
+      - 255
+      - 230
+      - 158
+      rgbw_color:
+      - 255
+      - 230
+      - 158
+      - 0
+      xy_color:
+      - 0.408
+      - 0.401
+      white_value: 0
+      friendly_name: Kueche-Lichtstreifen
+      supported_features: 151
+      state: 'on'
+- id: '1625677625498'
+  name: Kuecheaus
+  entities:
+    light.kueche_lichtstreifen:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      supported_color_modes:
+      - color_temp
+      - hs
+      - rgbw
+      friendly_name: Kueche-Lichtstreifen
+      supported_features: 151
+      state: 'off'
+- id: '1625678011921'
+  name: DuschLichtan
+  entities:
+    light.yeelight_color_0x0000000007d45ad8:
+      min_mireds: 153
+      max_mireds: 588
+      effect_list:
+      - Strobe color
+      - Police
+      - Christmas
+      - RGB
+      - Random Loop
+      - Fast Random Loop
+      - LSD
+      - Slowdown
+      - Night Mode
+      - Date Night
+      - Movie
+      - Sunrise
+      - Sunset
+      - Romance
+      - Happy Birthday
+      - Disco
+      - Strobe epilepsy!
+      - Alarm
+      - Police2
+      - WhatsApp
+      - Facebook
+      - Twitter
+      - Home
+      - Candle Flicker
+      - Slow Temp
+      - Stop
+      supported_color_modes:
+      - color_temp
+      - hs
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 75.102
+      - 57.647
+      rgb_color:
+      - 218
+      - 255
+      - 108
+      xy_color:
+      - 0.371
+      - 0.503
+      color_temp: 588
+      flowing: false
+      music_mode: false
+      friendly_name: Bad Deckenlicht
+      supported_features: 63
+      state: 'on'
+    light.flur_lichtstreifen:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      supported_color_modes:
+      - color_temp
+      - hs
+      - rgbw
+      color_mode: rgbw
+      brightness: 255
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      rgbw_color:
+      - 255
+      - 0
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      white_value: 0
+      friendly_name: Flur-Lichtstreifen
+      supported_features: 151
+      state: 'on'
+- id: '1625678164435'
+  name: FlurAus
+  entities:
+    switch.spiegel:
+      friendly_name: Spiegel
+      state: 'off'
+    light.flur_lichtstreifen:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      supported_color_modes:
+      - color_temp
+      - hs
+      - rgbw
+      friendly_name: Flur-Lichtstreifen
+      supported_features: 151
+      state: 'off'
+- id: '1625678202440'
+  name: FlurAn
+  entities:
+    switch.spiegel:
+      friendly_name: Spiegel
+      state: 'on'
+    light.flur_lichtstreifen:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      supported_color_modes:
+      - color_temp
+      - hs
+      - rgbw
+      color_mode: rgbw
+      brightness: 220
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      rgbw_color:
+      - 255
+      - 255
+      - 255
+      - 0
+      xy_color:
+      - 0.323
+      - 0.329
+      white_value: 0
+      friendly_name: Flur-Lichtstreifen
+      supported_features: 151
+      state: 'on'

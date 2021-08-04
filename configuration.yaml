@@ -1,0 +1,45 @@
+
+# Text to speech
+tts:
+  - platform: google_translate
+    language: "de"
+    
+    
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+camera: !include camera.yaml
+
+
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegrambotapikey01
+    allowed_chat_ids:
+      - !secret telegramallowedchat_ids01
+
+# Example configuration.yaml entry for the notifier
+notify:
+  - platform: telegram
+    name: Telegram02
+    chat_id: !secret telegramallowedchat_ids01
+
+  # It is possible to add multiple notifiers by using another chat_id
+  # the example belows shows an additional notifier which sends messages to the bot which is added to a group
+  - platform: telegram
+    name: Telegram01
+    chat_id: !secret telegramallowedchat_ids01
+    
+light:
+  - platform: flux_led
+    automatic_add: true
+    devices:
+      192.168.170.33:
+        name: Flur-Lichtstreifen
+        mode: rgb
+      192.168.170.27:
+        name: Kueche-Lichtstreifen
+      192.168.170.29:
+        name: Schlafzimmer-Bild-Lichtstreifen
+        mode: rgb
